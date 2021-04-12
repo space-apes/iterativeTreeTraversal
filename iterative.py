@@ -61,7 +61,7 @@ class BSTIter(BSTADT):
         else:
             return False
 
-    #print all values following preorder traversal iteratively
+#print all values following preorder traversal iteratively
     def printPreorder(self, curRoot):
         if self.root == None:
             print('empty tree')
@@ -78,7 +78,32 @@ class BSTIter(BSTADT):
             if curNode.hasLeft():
                 nodeStack.append(curNode.left)
 
-    #print all values following inorder traversal iteratively
+    #print all values following preorder traversal iteratively
+    def printInorder(self, curNode):
+        if self.root == None:
+            print('empty tree')
+            return
+        
+        keyList = []
+        nodeList = []
+        nodeList.append(curNode)
+        #pushpushpush nodes to the left 
+        #if you have left go left 
+        #then go right    
+        while len(nodeList) > 0: 
+            curNode = nodeList.pop()
+            if curNode.hasRight():
+                keyList.append(curNode.right.key)
+                nodeList.append(curNode.right)
+            keyList.append(curNode.key)  
+            if curNode.hasLeft():
+                keyList.insert(0, curNode.left.key)
+                nodeList.insert(0, curNode.left)
+
+        for x in keyList:
+            print(x)
+
+#print all values following inorder traversal iteratively
     #so we are covering 
     def printInorder(self, curRoot):
         if self.root == None:
@@ -126,10 +151,10 @@ def main():
     print("*****PREORDER ITERATIVE*****")
     bst.printPreorder(bst.root)
 
-"""
-    print("*****INORDER RECURSIVE*****")
-    bst.printInorder(bst.root)
 
+    print("*****INORDER ITERATIVE*****")
+    bst.printInorder(bst.root)
+"""
     print("*****POSTORDER RECURSIVE*****")
     bst.printPostorder(bst.root)
 
