@@ -78,48 +78,50 @@ class BSTIter(BSTADT):
             if curNode.hasLeft():
                 nodeStack.append(curNode.left)
 
-    #print all values following preorder traversal iteratively
+    #print all values following inorder traversal iteratively 
     def printInorder(self, curNode):
         if self.root == None:
             print('empty tree')
             return
+
+        nodeStack = []
+        nodeStack.append(curNode)
         
-        keyList = []
-        nodeList = []
-        nodeList.append(curNode)
-        #pushpushpush nodes to the left 
-        #if you have left go left 
-        #then go right    
-        while len(nodeList) > 0: 
-            curNode = nodeList.pop()
-            if curNode.hasRight():
-                keyList.append(curNode.right.key)
-                nodeList.append(curNode.right)
-            keyList.append(curNode.key)  
-            if curNode.hasLeft():
-                keyList.insert(0, curNode.left.key)
-                nodeList.insert(0, curNode.left)
+        while len(nodeStack) > 0:
+            if curNode == None:
+                curNode = nodeStack.pop()
+                print(curNode.key)
+                curNode = curNode.right
+            else:
+                nodeStack.append(curNode)
+                curNode = curNode.left
+                    
 
-        for x in keyList:
-            print(x)
+#print all values following postorder traversal iteratively
+    #visit whole left subtree
+    #visit whole right subtree
+    #visit root
 
-#print all values following inorder traversal iteratively
-    #so we are covering 
-    def printInorder(self, curRoot):
+    def printPreordertPostorder(self, curNode):
         if self.root == None:
             print('empty tree')
             return
-        
-        curNode = curRoot
-        nodeStack.append(curNode)
 
-        #stack filling mode 
-        while curNode.hasChildren():
-            if curNode.hasRight():
-                nodeStack.append(curNode.right)
+    nodeStack = []
+    nodeStack.append(curNode)
+
+    while current != None or len(nodeStack) > 0:
+        if curNode == None:
+            if nodeStack[len(nodeStack)+1].hasRight():
+                curNode = nodeStack
+            else:
+                curNode = nodeStack.pop()
+                print(curNode.key)
+        else:
             nodeStack.append(curNode)
-            if curNode.hasLeft():
-                nodeStack.append(curNode.left)
+            curNode = curNode.left
+            #stuff 
+
 
 
 #open file
