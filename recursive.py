@@ -44,8 +44,24 @@ class BSTRecur(BSTADT):
                 else:
                     self.insertSingle(curRoot.right, keyVal)
         return 
-   
+
+
     def search(self, curRoot, searchValue):
+        if self.isEmpty():
+            print('can not search empty BST')
+            return False
+
+        if curRoot == None:
+            return False 
+        elif searchValue == curRoot.key:
+            return True
+        else: 
+            return self.search(curRoot.left, searchValue) or self.search(curRoot.right, searchValue)
+
+    """i don't really understand this even though I coded it. 
+    i feel like might have some conditions it doesnt work
+
+    def oldSearch(self, curRoot, searchValue):
         if self.isEmpty():
             print('can not search empty BST')
             return False
@@ -60,6 +76,7 @@ class BSTRecur(BSTADT):
             return True
         else:
             return False
+    """
 
     #print all values following preorder traversal recursively
     def printPreorder(self, curRoot):
